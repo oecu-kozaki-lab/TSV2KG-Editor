@@ -1,0 +1,59 @@
+Alice	friend	Bob	#90CAF9	#90CAF9	#64B5F6
+Alice	friend	Ken	#90CAF9	#90CAF9	#64B5F6
+John	friend	Misaki	#90CAF9	#90CAF9	#64B5F6
+Misaki	friend	Ryo	#90CAF9	#90CAF9	#64B5F6
+Alice	senior	Bob	#90CAF9	#90CAF9	#5C6BC0
+Ken	junior	Alice	#90CAF9	#90CAF9	#5C6BC0
+John	senior	Misaki	#90CAF9	#90CAF9	#5C6BC0
+Ryo	junior	John	#90CAF9	#90CAF9	#5C6BC0
+Alice	supervisor	Prof. Smith	#90CAF9	#CE93D8	#AB47BC
+Bob	supervisor	Prof. Smith	#90CAF9	#CE93D8	#AB47BC
+Ken	supervisor	Prof. Smith	#90CAF9	#CE93D8	#AB47BC
+John	supervisor	Prof. Tanaka	#90CAF9	#CE93D8	#AB47BC
+Misaki	supervisor	Prof. Tanaka	#90CAF9	#CE93D8	#AB47BC
+Ryo	supervisor	Prof. Tanaka	#90CAF9	#CE93D8	#AB47BC
+Prof. Smith	collaborator	Prof. Tanaka	#CE93D8	#CE93D8	#8E24AA
+Knowledge Representation Lab	professorInCharge	Prof. Smith	#B0BEC5	#CE93D8	#AB47BC
+Natural Language Processing Lab	professorInCharge	Prof. Tanaka	#B0BEC5	#CE93D8	#AB47BC
+Alice	affiliation	Knowledge Representation Lab	#90CAF9	#B0BEC5	#78909C
+Bob	affiliation	Knowledge Representation Lab	#90CAF9	#B0BEC5	#78909C
+Ken	affiliation	Knowledge Representation Lab	#90CAF9	#B0BEC5	#78909C
+John	affiliation	Natural Language Processing Lab	#90CAF9	#B0BEC5	#78909C
+Misaki	affiliation	Natural Language Processing Lab	#90CAF9	#B0BEC5	#78909C
+Ryo	affiliation	Natural Language Processing Lab	#90CAF9	#B0BEC5	#78909C
+Prof. Smith	affiliation	Department of Informatics	#CE93D8	#B0BEC5	#78909C
+Prof. Tanaka	affiliation	Department of Informatics	#CE93D8	#B0BEC5	#78909C
+Alice	researchTheme	Knowledge Graphs	#90CAF9	#A5D6A7	#66BB6A
+Bob	researchTheme	Semantic Web	#90CAF9	#A5D6A7	#66BB6A
+Ken	researchTheme	Ontology	#90CAF9	#A5D6A7	#66BB6A
+John	researchTheme	Natural Language Processing	#90CAF9	#A5D6A7	#66BB6A
+Misaki	researchTheme	Information Retrieval	#90CAF9	#A5D6A7	#66BB6A
+Ryo	researchTheme	Machine Translation	#90CAF9	#A5D6A7	#66BB6A
+Alice	takes	Knowledge Representation	#90CAF9	#FFCC80	#FB8C00
+Bob	takes	Knowledge Representation	#90CAF9	#FFCC80	#FB8C00
+Ken	takes	Knowledge Representation	#90CAF9	#FFCC80	#FB8C00
+John	takes	Natural Language Processing	#90CAF9	#FFCC80	#FB8C00
+Misaki	takes	Information Retrieval	#90CAF9	#FFCC80	#FB8C00
+Ryo	takes	Natural Language Processing	#90CAF9	#FFCC80	#FB8C00
+Prof. Smith	teaches	Knowledge Representation	#CE93D8	#FFCC80	#F57C00
+Prof. Tanaka	teaches	Natural Language Processing	#CE93D8	#FFCC80	#F57C00
+Prof. Tanaka	teaches	Information Retrieval	#CE93D8	#FFCC80	#F57C00
+Knowledge Graphs	relatedField	Semantic Web	#A5D6A7	#A5D6A7	#43A047
+Semantic Web	relatedField	Ontology	#A5D6A7	#A5D6A7	#43A047
+Natural Language Processing	relatedField	Information Retrieval	#A5D6A7	#A5D6A7	#43A047
+Natural Language Processing	relatedField	Machine Translation	#A5D6A7	#A5D6A7	#43A047
+Knowledge Representation	covers	Knowledge Graphs	#FFCC80	#A5D6A7	#7CB342
+Knowledge Representation	covers	Semantic Web	#FFCC80	#A5D6A7	#7CB342
+Knowledge Representation	covers	Ontology	#FFCC80	#A5D6A7	#7CB342
+Natural Language Processing	covers	Natural Language Processing	#FFCC80	#A5D6A7	#7CB342
+Natural Language Processing	covers	Machine Translation	#FFCC80	#A5D6A7	#7CB342
+Information Retrieval	covers	Information Retrieval	#FFCC80	#A5D6A7	#7CB342
+Alice	interest	SPARQL	#90CAF9	#EF9A9A	#E53935
+Bob	interest	RDF	#90CAF9	#EF9A9A	#E53935
+Ken	interest	OWL	#90CAF9	#EF9A9A	#E53935
+John	interest	Machine Learning	#90CAF9	#EF9A9A	#E53935
+Misaki	interest	Search Evaluation	#90CAF9	#EF9A9A	#E53935
+Ryo	interest	Neural Machine Translation	#90CAF9	#EF9A9A	#E53935
+SPARQL	relatedTechnology	RDF	#EF9A9A	#EF9A9A	#D32F2F
+RDF	relatedTechnology	Semantic Web	#EF9A9A	#A5D6A7	#D32F2F
+OWL	relatedTechnology	Ontology	#EF9A9A	#A5D6A7	#D32F2F

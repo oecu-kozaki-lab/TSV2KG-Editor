@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>TSV2KG Editor Help</title>
+  <style>
+    body {
+      margin: 0;
+      color: #222;
+      background: #f6f7f8;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+      background: #fff;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 2rem;
+      border-bottom: 3px solid #444;
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      margin-top: 36px;
+      font-size: 1.35rem;
+      border-left: 6px solid #4f7fbf;
+      padding-left: 10px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      font-size: 1.1rem;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    pre {
+      background: #f0f3f6;
+      border: 1px solid #d5dbe3;
+      border-radius: 6px;
+      padding: 12px;
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d5dbe3;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3f9;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .note {
+      background: #fff8e6;
+      border: 1px solid #e5cc7a;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin: 16px 0;
+    }
+
+    .nav {
+      margin: 20px 0 28px;
+    }
+
+    .nav a {
+      color: #1d5fa7;
+      text-decoration: none;
+      margin-right: 16px;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>TSV2KG Editor Help</h1>
+
+    <div class="nav">
+      <a href="index.html">ツールを開く</a>
+    </div>
+
+    <h2>概要</h2>
+    <p>
+      このツールは、TSV形式で入力した主語・述語・目的語の関係をグラフとして表示し、
+      ノードやエッジを編集しながらRDF/Turtle形式のトリプルを生成するための簡易ツールです。
+    </p>
+
+    <h2>1. TSV入力</h2>
+    <p>
+      TSV入力欄には、1行につき1つの関係を入力します。基本形式は次の通りです。
+    </p>
+
+    <pre>主語    述語    目的語</pre>
+
+    <p>
+      色を指定したい場合は、4列目以降に主語色、目的語色、エッジ色を追加できます。
+    </p>
+
+    <pre>主語    述語    目的語    主語色    目的語色    エッジ色</pre>
+
+    <h3>入力例</h3>
+    <pre>風車    影響を与える    環境影響
+風車    設置される    山間部    lightgreen    orange    #2B7CE9</pre>
+
+    <div class="note">
+      区切りはタブまたは空白です。ただし、主語・述語・目的語の中に空白を含めたい場合は、
+      現在の仕様では1つの語として扱えないため、空白を使わない表記にしてください。
+    </div>
+
+    <h2>2. グラフ表示と編集</h2>
+    <p>
+      <strong>グラフ表示</strong>ボタンを押すと、TSV入力欄の内容がグラフとして表示されます。
+      グラフ表示領域は右下をドラッグしてサイズ変更できます。
+    </p>
+
+    <table>
+      <tr>
+        <th>操作</th>
+        <th>内容</th>
+      </tr>
+      <tr>
+        <td>ダブルクリック</td>
+        <td>ノード名またはエッジ名を編集します。</td>
+      </tr>
+      <tr>
+        <td>Ctrl + ダブルクリック</td>
+        <td>ノードまたはエッジの色を変更します。</td>
+      </tr>
+      <tr>
+        <td>自動レイアウト ON/OFF</td>
+        <td>物理シミュレーションによる自動配置を切り替えます。</td>
+      </tr>
+    </table>
+
+    <p>
+      グラフを表示せずに<strong>Triple生成</strong>を押した場合でも、
+      TSV入力欄の内容から直接トリプルを生成できます。
+      グラフ上で編集済みの場合は、編集後の内容が優先されます。
+    </p>
+
+    <h2>3. IRIとPREFIX設定</h2>
+    <table>
+      <tr>
+        <th>項目</th>
+        <th>説明</th>
+      </tr>
+      <tr>
+        <td>base-IRI</td>
+        <td>主語・目的語のIRIを自動生成するときに使う基準IRIです。</td>
+      </tr>
+      <tr>
+        <td>property-IRI</td>
+        <td>述語のIRIを自動生成するときに使う基準IRIです。</td>
+      </tr>
+      <tr>
+        <td>PREFIX</td>
+        <td>Turtle形式のPREFIX宣言を入力します。対応するIRIがある場合はプレフィックス表記で出力されます。</td>
+      </tr>
+      <tr>
+        <td>graph</td>
+        <td>Endpoint反映時に使う名前付きグラフIRIです。空欄の場合はGRAPH句なしで送信します。</td>
+      </tr>
+      <tr>
+        <td>endpoint</td>
+        <td>SPARQL Updateの送信先エンドポイントです。</td>
+      </tr>
+    </table>
+
+    <h3>PREFIX例</h3>
+    <pre>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix ex: &lt;http://example.com/&gt; .
+@prefix prop: &lt;http://example.com/prop/&gt; .</pre>
+
+    <h2>4. Triple生成オプション</h2>
+    <table>
+      <tr>
+        <th>オプション</th>
+        <th>デフォルト</th>
+        <th>説明</th>
+      </tr>
+      <tr>
+        <td>IRIを自動生成</td>
+        <td>ON</td>
+        <td>
+          ONの場合、主語・目的語は連番、述語は翻訳候補または対応表の値を使ってIRIを生成します。
+          OFFの場合、主語・目的語は<code>base-IRI + 元文字列</code>、
+          述語は<code>property-IRI + 元文字列</code>でIRIを生成します。
+          プレフィックスがない場合、元文字列はIRI用にエンコードされます。
+        </td>
+      </tr>
+      <tr>
+        <td>rdfs:labelを出力</td>
+        <td>ON</td>
+        <td>ONの場合、各ノードとプロパティに<code>rdfs:label</code>を出力します。</td>
+      </tr>
+      <tr>
+        <td>rdf:Propertyを出力</td>
+        <td>ON</td>
+        <td>ONの場合、述語リソースに<code>rdf:type rdf:Property</code>を出力します。</td>
+      </tr>
+    </table>
+
+    <h2>5. 日本語述語の変換</h2>
+    <p>
+      <strong>IRIを自動生成</strong>がONの場合、日本語の述語は英訳候補をもとにプロパティ名へ変換されます。
+      候補は<strong>述語変換</strong>の対応表に表示されます。
+    </p>
+
+    <p>
+      候補を修正したい場合は、対応表の「プロパティ名」を編集してから、もう一度<strong>Triple生成</strong>を押してください。
+    </p>
+
+    <div class="note">
+      英訳候補の生成では外部翻訳サービスへ日本語述語を送信します。
+      送信したくない語がある場合は、IRI自動生成をOFFにするか、事前にプレフィックス表記の述語を入力してください。
+    </div>
+
+    <h2>6. 出力例</h2>
+    <p>
+      入力:
+    </p>
+    <pre>風車    影響を与える    環境影響</pre>
+
+    <p>
+      出力例:
+    </p>
+    <pre>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix ex: &lt;http://example.com/&gt; .
+@prefix prop: &lt;http://example.com/prop/&gt; .
+
+ex:1 rdfs:label "風車"@ja.
+ex:2 rdfs:label "環境影響"@ja.
+prop:affects rdf:type rdf:Property.
+prop:affects rdfs:label "影響を与える"@ja.
+ex:1 prop:affects ex:2.</pre>
+
+    <h2>7. Endpoint反映</h2>
+    <p>
+      <strong>Endpoint反映</strong>ボタンを押すと、生成済みのトリプルをSPARQL Updateの
+      <code>INSERT DATA</code>として送信します。
+      <code>graph</code>欄が入力されている場合は、指定された名前付きグラフへ登録します。
+    </p>
+  </main>
+</body>
+</html>

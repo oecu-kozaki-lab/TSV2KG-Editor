@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>TSV2KG Editor
+</title>
+
+  <!-- VIS Network -->
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+  <!-- existing scripts -->
+  <script src="js/setting.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/post.js"></script>
+  <script src="js/main.js"></script>
+
+  <link href="css/main.css" rel="stylesheet"/>
+</head>
+
+<body>
+  <div class="container">
+    <div class="contents">
+      <h1>TSV2KG Editor</h1>
+      <div class="help_link">
+        <a href="help.html" target="_blank">使い方を開く</a>
+      </div>
+<b>データ形式:</b>主語 述語 目的語[ 主語ノード色 エッジ色 目的語ノード色]<br>
+※区切り文字は「TAB」または「空白」<br>
+※「Edit」ボタンで，編集モードに切り替え可能<br>
+※ノード・エッジを<b>「Cntl+ダブルクリック」</b>することで色の変更が可能<br>
+
+      <!-- 入力エリア -->
+      <div class="box input_box">
+        <div>
+          <textarea id="input" placeholder="データを入力" class="textarea">
+バードストライク	影響	イヌワシ（天然記念物） lightgreen
+風車	引き起こす	バードストライク
+風車	必要とする	森林伐採 orange
+風車	影響を与える	栗子山の水源汚染 orange
+風車	発生する	低周波音 orange
+風車	必要とする	高額な建設コスト
+栗子山	生息する	イヌワシ（天然記物） lightgreen
+森林伐採	影響を与える	土砂災害リスク orange
+低周波音	影響を与える	住民の健康 orange
+JR東日本エネルギー開発	計画する	栗子山風力発電事業
+栗子山風力発電事業	設置する	風車
+JR東日本エネルギー開発	進める	環境影響評価の手続き
+JR東日本エネルギー開発	無視する	地質調査の必要性
+栗子山	含む	脆弱な地盤
+風車	場所	栗子山
+脆弱な地盤	必要	地質調査の必要性
+脆弱な地盤	影響	土砂災害リスク orange
+          </textarea>
+        </div>
+
+        <!-- 操作ボタン -->
+        <button id="viewBtn">グラフ表示</button>
+
+        <!-- ★ 自動レイアウト切替ボタン -->
+        <button id="physicsBtn" data-on="false" style="margin-left:10px;">
+          自動レイアウト：OFF
+        </button>
+        <br>
+      </div>
+
+      <!-- グラフ表示 -->
+      <div class="map_box">
+        <div id="mynetwork"></div>
+
+        <!-- 編集用 input -->
+        <input id="editBox" type="text"
+          style="
+            position:absolute;
+            text-align:center;
+            display:none;
+            z-index:1000;
+            outline:none;
+            padding:2px;
+          " />
+        <input id="colorPicker" type="color" style="position:absolute; display:none; z-index:1001;" />
+        <div id="colorPreset"
+              style="position:absolute; display:none; z-index:1002; background:#fff; border:1px solid #ccc; padding:4px;">
+        </div>
+      </div>
+
+      <!-- 結果エリア -->
+      <div class="box result_box">
+        <div class="update_box">
+          <div class="line">
+            <div class="header">base-IRI</div>
+            <input type="text" id="pfx_inp">
+          </div>
+          <div class="line">
+            <div class="header">property-IRI</div>
+            <input type="text" id="prop_iri_inp">
+          </div>
+          <div class="line">
+            <div class="header">PREFIX</div>
+            <textarea id="prefix_inp" class="prefix_textarea" placeholder="@prefix ex: <http://example.org/> ."></textarea>
+          </div>
+          <div class="line">
+            <div class="header">graph</div>
+            <input type="text" id="grf_inp">
+          </div>
+          <div class="line">
+            <div class="header">endpoint</div>
+            <input type="text" id="ep_upd_inp">
+          </div>
+          <div class="line output_options">
+            <div class="header">出力設定</div>
+            <div>
+              <label>
+                <input type="checkbox" id="auto_iri_chk" checked>
+                IRIを自動生成
+              </label>
+              <label>
+                <input type="checkbox" id="label_out_chk" checked>
+                rdfs:labelを出力
+              </label>
+              <label>
+                <input type="checkbox" id="property_type_chk" checked>
+                rdf:Propertyを出力
+              </label>
+            </div>
+          </div>
+          <div class="line predicate_map_area" id="predicateMapArea" style="display:none;">
+            <div class="header">述語変換</div>
+            <div>
+              <table id="predicateMapTable">
+                <thead>
+                  <tr>
+                    <th>日本語述語</th>
+                    <th>プロパティ名</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="button">
+            <button id="saveBtn">Triple生成</button>
+            <button id="updateBtn">Endpoint反映</button>
+          </div>
+        </div>
+
+        <textarea id="output"
+          placeholder="Tripleがここに表示されます"
+          class="textarea"
+          readonly>
+        </textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ローディング -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="spinner"></div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.com/> .
+@prefix prop: <http://example.com/prop/> .
+
+ex:Alice rdfs:label "Alice"@en .
+ex:Bob rdfs:label "Bob"@en .
+ex:Ken rdfs:label "Ken"@en .
+ex:John rdfs:label "John"@en .
+ex:Misaki rdfs:label "Misaki"@en .
+ex:Ryo rdfs:label "Ryo"@en .
+ex:ProfSmith rdfs:label "Prof. Smith"@en .
+ex:ProfTanaka rdfs:label "Prof. Tanaka"@en .
+ex:KnowledgeRepresentationLab rdfs:label "Knowledge Representation Lab"@en .
+ex:NaturalLanguageProcessingLab rdfs:label "Natural Language Processing Lab"@en .
+ex:DepartmentOfInformatics rdfs:label "Department of Informatics"@en .
+ex:KnowledgeGraphs rdfs:label "Knowledge Graphs"@en .
+ex:SemanticWeb rdfs:label "Semantic Web"@en .
+ex:Ontology rdfs:label "Ontology"@en .
+ex:NaturalLanguageProcessing rdfs:label "Natural Language Processing"@en .
+ex:InformationRetrieval rdfs:label "Information Retrieval"@en .
+ex:MachineTranslation rdfs:label "Machine Translation"@en .
+ex:KnowledgeRepresentation rdfs:label "Knowledge Representation"@en .
+ex:SPARQL rdfs:label "SPARQL"@en .
+ex:RDF rdfs:label "RDF"@en .
+ex:OWL rdfs:label "OWL"@en .
+ex:MachineLearning rdfs:label "Machine Learning"@en .
+ex:SearchEvaluation rdfs:label "Search Evaluation"@en .
+ex:NeuralMachineTranslation rdfs:label "Neural Machine Translation"@en .
+
+prop:friend rdf:type rdf:Property ; rdfs:label "friend"@en .
+prop:senior rdf:type rdf:Property ; rdfs:label "senior"@en .
+prop:junior rdf:type rdf:Property ; rdfs:label "junior"@en .
+prop:supervisor rdf:type rdf:Property ; rdfs:label "supervisor"@en .
+prop:collaborator rdf:type rdf:Property ; rdfs:label "collaborator"@en .
+prop:professorInCharge rdf:type rdf:Property ; rdfs:label "professor in charge"@en .
+prop:affiliation rdf:type rdf:Property ; rdfs:label "affiliation"@en .
+prop:researchTheme rdf:type rdf:Property ; rdfs:label "research theme"@en .
+prop:takes rdf:type rdf:Property ; rdfs:label "takes"@en .
+prop:teaches rdf:type rdf:Property ; rdfs:label "teaches"@en .
+prop:relatedField rdf:type rdf:Property ; rdfs:label "related field"@en .
+prop:covers rdf:type rdf:Property ; rdfs:label "covers"@en .
+prop:interest rdf:type rdf:Property ; rdfs:label "interest"@en .
+prop:relatedTechnology rdf:type rdf:Property ; rdfs:label "related technology"@en .
+
+ex:Alice prop:friend ex:Bob, ex:Ken ;
+  prop:senior ex:Bob ;
+  prop:supervisor ex:ProfSmith ;
+  prop:affiliation ex:KnowledgeRepresentationLab ;
+  prop:researchTheme ex:KnowledgeGraphs ;
+  prop:takes ex:KnowledgeRepresentation ;
+  prop:interest ex:SPARQL .
+ex:Bob prop:supervisor ex:ProfSmith ;
+  prop:affiliation ex:KnowledgeRepresentationLab ;
+  prop:researchTheme ex:SemanticWeb ;
+  prop:takes ex:KnowledgeRepresentation ;
+  prop:interest ex:RDF .
+ex:Ken prop:junior ex:Alice ;
+  prop:supervisor ex:ProfSmith ;
+  prop:affiliation ex:KnowledgeRepresentationLab ;
+  prop:researchTheme ex:Ontology ;
+  prop:takes ex:KnowledgeRepresentation ;
+  prop:interest ex:OWL .
+ex:John prop:friend ex:Misaki ;
+  prop:senior ex:Misaki ;
+  prop:supervisor ex:ProfTanaka ;
+  prop:affiliation ex:NaturalLanguageProcessingLab ;
+  prop:researchTheme ex:NaturalLanguageProcessing ;
+  prop:takes ex:NaturalLanguageProcessing ;
+  prop:interest ex:MachineLearning .
+ex:Misaki prop:friend ex:Ryo ;
+  prop:supervisor ex:ProfTanaka ;
+  prop:affiliation ex:NaturalLanguageProcessingLab ;
+  prop:researchTheme ex:InformationRetrieval ;
+  prop:takes ex:InformationRetrieval ;
+  prop:interest ex:SearchEvaluation .
+ex:Ryo prop:junior ex:John ;
+  prop:supervisor ex:ProfTanaka ;
+  prop:affiliation ex:NaturalLanguageProcessingLab ;
+  prop:researchTheme ex:MachineTranslation ;
+  prop:takes ex:NaturalLanguageProcessing ;
+  prop:interest ex:NeuralMachineTranslation .
+ex:ProfSmith prop:collaborator ex:ProfTanaka ;
+  prop:affiliation ex:DepartmentOfInformatics ;
+  prop:teaches ex:KnowledgeRepresentation .
+ex:ProfTanaka prop:affiliation ex:DepartmentOfInformatics ;
+  prop:teaches ex:NaturalLanguageProcessing, ex:InformationRetrieval .
+ex:KnowledgeRepresentationLab prop:professorInCharge ex:ProfSmith .
+ex:NaturalLanguageProcessingLab prop:professorInCharge ex:ProfTanaka .
+ex:KnowledgeGraphs prop:relatedField ex:SemanticWeb .
+ex:SemanticWeb prop:relatedField ex:Ontology .
+ex:NaturalLanguageProcessing prop:relatedField ex:InformationRetrieval, ex:MachineTranslation .
+ex:KnowledgeRepresentation prop:covers ex:KnowledgeGraphs, ex:SemanticWeb, ex:Ontology .
+ex:NaturalLanguageProcessing prop:covers ex:NaturalLanguageProcessing, ex:MachineTranslation .
+ex:InformationRetrieval prop:covers ex:InformationRetrieval .
+ex:SPARQL prop:relatedTechnology ex:RDF .
+ex:RDF prop:relatedTechnology ex:SemanticWeb .
+ex:OWL prop:relatedTechnology ex:Ontology .
