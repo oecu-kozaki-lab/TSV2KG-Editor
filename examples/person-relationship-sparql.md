@@ -1,8 +1,10 @@
-# SPARQL Examples for `person-relationship.ttl`
+# `person-relationship.ttl` 用SPARQLクエリ例
 
-These examples use the sample RDF graph generated from `person-relationship.tsv`.
+このファイルは、`person-relationship.tsv` から生成したサンプルRDF `person-relationship.ttl` に対する基本的なSPARQLクエリ例です。
 
-## Prefixes
+## PREFIX
+
+各クエリの先頭に以下のPREFIXを付けて実行します。
 
 ```sparql
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -11,7 +13,9 @@ PREFIX ex:   <http://example.com/>
 PREFIX prop: <http://example.com/prop/>
 ```
 
-## 1. List triples
+## 1. すべてのトリプルを取得する
+
+RDFデータに含まれる主語・述語・目的語の組を確認します。
 
 ```sparql
 SELECT ?s ?p ?o
@@ -21,7 +25,9 @@ WHERE {
 LIMIT 50
 ```
 
-## 2. List resources and labels
+## 2. リソースとラベルの一覧を取得する
+
+`rdfs:label` を使って、IRIと表示名の対応を確認します。
 
 ```sparql
 SELECT ?x ?label
@@ -31,9 +37,9 @@ WHERE {
 ORDER BY ?x
 ```
 
-## 3. Get an object by subject and predicate
+## 3. 主語と述語を指定して目的語を取得する
 
-Get the supervisor of `ex:1`.
+`ex:1` の指導教員を取得します。
 
 ```sparql
 SELECT ?teacher ?teacherLabel
@@ -43,7 +49,9 @@ WHERE {
 }
 ```
 
-## 4. List available properties
+## 4. 利用可能なプロパティ一覧を取得する
+
+このRDFデータで定義されているプロパティを確認します。
 
 ```sparql
 SELECT ?property ?propertyLabel
@@ -56,7 +64,9 @@ WHERE {
 ORDER BY ?property
 ```
 
-## 5. Find a subject by label, then query its relations
+## 5. ラベルでリソースを探してから関係を取得する
+
+IRIを直接知らない場合、まずラベル `"太郎"@ja` を持つリソースを探し、そのリソースの指導教員を取得します。
 
 ```sparql
 SELECT ?student ?teacher ?teacherLabel
@@ -67,9 +77,9 @@ WHERE {
 }
 ```
 
-## 6. Get subjects by predicate and object
+## 6. 述語と目的語を指定して主語を取得する
 
-Get students supervised by `ex:7`.
+`ex:7` を指導教員にもつ学生を取得します。
 
 ```sparql
 SELECT ?student ?studentLabel
@@ -79,7 +89,9 @@ WHERE {
 }
 ```
 
-## 7. Get multiple properties of a resource
+## 7. ある人物の複数の情報を取得する
+
+`"太郎"@ja` の所属、研究テーマ、興味をまとめて取得します。
 
 ```sparql
 SELECT ?labLabel ?themeLabel ?interestLabel
@@ -96,7 +108,9 @@ WHERE {
 }
 ```
 
-## 8. List people by affiliation
+## 8. 所属ごとに人物を取得する
+
+誰がどの研究室・組織に所属しているかを取得します。
 
 ```sparql
 SELECT ?personLabel ?labLabel
@@ -108,7 +122,9 @@ WHERE {
 ORDER BY ?labLabel ?personLabel
 ```
 
-## 9. Find people in the same lab
+## 9. 同じ研究室に所属する人物の組を取得する
+
+`研究室メンバー` のような関係を直接持たせなくても、`所属` から同じ研究室の人物を検索できます。
 
 ```sparql
 SELECT ?person1Label ?person2Label ?labLabel
@@ -125,7 +141,9 @@ WHERE {
 ORDER BY ?labLabel ?person1Label ?person2Label
 ```
 
-## 10. List labs and professors in charge
+## 10. 研究室と担当教授を取得する
+
+研究室と、その担当教授を取得します。
 
 ```sparql
 SELECT ?labLabel ?professorLabel
@@ -136,7 +154,9 @@ WHERE {
 }
 ```
 
-## 11. List courses, instructors, and students
+## 11. 講義、担当教員、履修学生を取得する
+
+講義を担当している教員と、その講義を履修している学生を取得します。
 
 ```sparql
 SELECT ?courseLabel ?teacherLabel ?studentLabel
@@ -151,7 +171,9 @@ WHERE {
 ORDER BY ?courseLabel ?studentLabel
 ```
 
-## 12. Use OPTIONAL
+## 12. OPTIONALを使う
+
+`OPTIONAL` を使うと、指定した情報が存在する場合だけ追加で取得できます。
 
 ```sparql
 SELECT ?personLabel ?themeLabel ?interestLabel
@@ -168,7 +190,9 @@ WHERE {
 ORDER BY ?personLabel
 ```
 
-## 13. Count people by affiliation
+## 13. 所属ごとの人数を数える
+
+`COUNT` と `GROUP BY` を使って、所属ごとの人数を集計します。
 
 ```sparql
 SELECT ?labLabel (COUNT(?person) AS ?count)

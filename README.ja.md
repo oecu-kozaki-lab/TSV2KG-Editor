@@ -6,6 +6,12 @@
 
 TSV2KG Editor は、TSV形式で入力した主語・述語・目的語の関係からRDF/KGを作成するためのブラウザベースの小さなツールです。TSVデータを貼り付け、グラフとして可視化し、ノードやエッジのラベル・色を編集し、RDF/Turtleとして出力できます。
 
+## オンラインで試す
+
+GitHub Pagesで公開している版を以下から実行できます。
+
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/
+
 ## 主な機能
 
 - シンプルなTSV入力からRDF/KGデータを作成

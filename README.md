@@ -6,6 +6,12 @@
 
 TSV2KG Editor is a small browser-based tool for creating RDF/KG data from tab-separated triples. You can paste TSV data, visualize it as an interactive graph, edit node and edge labels/colors, and export the result as RDF/Turtle.
 
+## Try It Online
+
+You can run TSV2KG Editor on GitHub Pages:
+
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/
+
 ## Features
 
 - Create RDF/KG data from simple TSV input.
