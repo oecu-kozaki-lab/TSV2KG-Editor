@@ -158,7 +158,32 @@ window.onload = function () {
   document.getElementById("prefix_inp").value = config.turtlePrefix || "";
   document.getElementById("grf_inp").value = config.graph;
   document.getElementById("ep_upd_inp").value = config.endpoint.update;
+
+  loadTsvFromUrl(document.getElementById("viewBtn"));
 };
+
+async function loadTsvFromUrl(viewBtn) {
+  const params = new URLSearchParams(location.search);
+  const tsvUrl = params.get("tsv");
+  if (!tsvUrl) return;
+
+  try {
+    showLoading();
+    const response = await fetch(tsvUrl);
+    if (!response.ok) {
+      throw new Error(response.status + " " + response.statusText);
+    }
+    document.getElementById("input").value = await response.text();
+
+    if (params.get("view") === "1" || params.get("view") === "true") {
+      viewBtn.click();
+    }
+  } catch (e) {
+    alert("TSVファイルを読み込めませんでした: " + tsvUrl + "\n" + e.message);
+  } finally {
+    hideLoading();
+  }
+}
 
 function ensureMapData(viewMap) {
   if (viewMap.data) return;

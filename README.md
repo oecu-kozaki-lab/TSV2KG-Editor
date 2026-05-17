@@ -34,6 +34,28 @@ The graph view uses [vis-network](https://visjs.github.io/vis-network/) loaded f
 
 If published with GitHub Pages, the app can run directly from the repository root.
 
+## Open a TSV File by URL
+
+You can specify a TSV file with the `tsv` query parameter.
+
+```text
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=examples/person-relationship-en.tsv
+```
+
+Add `view=1` to load the TSV and display the graph automatically.
+
+```text
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=examples/person-relationship-en.tsv&view=1
+```
+
+You can also specify an arbitrary TSV URL.
+
+```text
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=https://example.com/data.tsv
+```
+
+The remote server must allow browser access with CORS. If CORS is not enabled on the TSV file server, the app cannot load the file.
+
 ## TSV Format
 
 Basic input format:

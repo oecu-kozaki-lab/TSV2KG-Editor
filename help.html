@@ -161,7 +161,27 @@
       グラフ上で編集済みの場合は、編集後の内容が優先されます。
     </p>
 
-    <h2>3. IRIとPREFIX設定</h2>
+    <h2>3. URLでTSVファイルを指定する</h2>
+    <p>
+      URLの<code>tsv</code>パラメータで、読み込むTSVファイルを指定できます。
+    </p>
+
+    <pre>index.html?tsv=examples/person-relationship.tsv</pre>
+
+    <p>
+      <code>view=1</code>を追加すると、TSVを読み込んだあと自動でグラフ表示まで実行します。
+    </p>
+
+    <pre>index.html?tsv=examples/person-relationship.tsv&amp;view=1</pre>
+
+    <p>
+      任意のURLに置かれたTSVファイルも指定できます。ただし、TSVファイルを置いているサーバー側で
+      CORSが許可されている必要があります。
+    </p>
+
+    <pre>index.html?tsv=https://example.com/data.tsv</pre>
+
+    <h2>4. IRIとPREFIX設定</h2>
     <table>
       <tr>
         <th>項目</th>
@@ -195,7 +215,7 @@
 @prefix ex: &lt;http://example.com/&gt; .
 @prefix prop: &lt;http://example.com/prop/&gt; .</pre>
 
-    <h2>4. Triple生成オプション</h2>
+    <h2>5. Triple生成オプション</h2>
     <table>
       <tr>
         <th>オプション</th>
@@ -224,7 +244,7 @@
       </tr>
     </table>
 
-    <h2>5. 日本語述語の変換</h2>
+    <h2>6. 日本語述語の変換</h2>
     <p>
       <strong>IRIを自動生成</strong>がONの場合、日本語の述語は英訳候補をもとにプロパティ名へ変換されます。
       候補は<strong>述語変換</strong>の対応表に表示されます。
@@ -239,7 +259,7 @@
       送信したくない語がある場合は、IRI自動生成をOFFにするか、事前にプレフィックス表記の述語を入力してください。
     </div>
 
-    <h2>6. 出力例</h2>
+    <h2>7. 出力例</h2>
     <p>
       入力:
     </p>
@@ -259,7 +279,7 @@ prop:affects rdf:type rdf:Property.
 prop:affects rdfs:label "影響を与える"@ja.
 ex:1 prop:affects ex:2.</pre>
 
-    <h2>7. Endpoint反映</h2>
+    <h2>8. Endpoint反映</h2>
     <p>
       <strong>Endpoint反映</strong>ボタンを押すと、生成済みのトリプルをSPARQL Updateの
       <code>INSERT DATA</code>として送信します。

@@ -1,5 +1,9 @@
 # SPARQL Examples for `person-relationship-en.ttl`
 
+You can open the source TSV directly in TSV2KG Editor and display it as a graph:
+
+[Open the sample TSV in TSV2KG Editor](https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=examples/person-relationship-en.tsv&view=1)
+
 ## Prefixes
 
 ```sparql

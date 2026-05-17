@@ -2,6 +2,10 @@
 
 このファイルは、`person-relationship.tsv` から生成したサンプルRDF `person-relationship.ttl` に対する基本的なSPARQLクエリ例です。
 
+元になったTSVデータは、以下のリンクからTSV2KG Editorで直接読み込み、グラフ表示できます。
+
+[サンプルTSVをTSV2KG Editorで開く](https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=examples/person-relationship.tsv&view=1)
+
 ## PREFIX
 
 各クエリの先頭に以下のPREFIXを付けて実行します。

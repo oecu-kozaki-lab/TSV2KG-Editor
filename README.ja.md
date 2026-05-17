@@ -34,6 +34,28 @@ https://oecu-kozaki-lab.github.io/TSV2KG-Editor/
 
 GitHub Pagesで公開する場合も、リポジトリのルートを公開元にすればそのまま動作します。
 
+## URLでTSVファイルを指定する
+
+`tsv` クエリパラメータで、読み込むTSVファイルを指定できます。
+
+```text
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=examples/person-relationship.tsv
+```
+
+`view=1` を付けると、TSVを読み込んだあと自動でグラフ表示まで実行します。
+
+```text
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=examples/person-relationship.tsv&view=1
+```
+
+任意のURLに置かれたTSVファイルも指定できます。
+
+```text
+https://oecu-kozaki-lab.github.io/TSV2KG-Editor/?tsv=https://example.com/data.tsv
+```
+
+ただし、TSVファイルを置いているサーバー側でCORSが許可されている必要があります。CORSが許可されていない場合、ブラウザの制約によりファイルを読み込めません。
+
 ## TSV形式
 
 基本形式:
