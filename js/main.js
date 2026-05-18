@@ -1,6 +1,7 @@
 window.onload = function () {
 
   const viewMap = new ViewMap();
+  setupTextareaTabInput(document.getElementById("input"));
   let network = null;   // ViewMap と共有する network
 
   // =========================
@@ -161,6 +162,21 @@ window.onload = function () {
 
   loadTsvFromUrl(document.getElementById("viewBtn"));
 };
+
+function setupTextareaTabInput(textarea) {
+  if (!textarea) return;
+
+  textarea.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab" || e.ctrlKey || e.altKey || e.metaKey) return;
+
+    e.preventDefault();
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    textarea.setRangeText("\t", start, end, "end");
+    textarea.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+}
 
 async function loadTsvFromUrl(viewBtn) {
   const params = new URLSearchParams(location.search);
