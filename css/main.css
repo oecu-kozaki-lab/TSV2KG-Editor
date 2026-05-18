@@ -78,6 +78,10 @@
     margin:1em;
 }
 
+.map_box {
+    position: relative;
+}
+
 .update_box {
     width: fit-content;
 }

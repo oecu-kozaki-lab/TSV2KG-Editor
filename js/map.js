@@ -220,9 +220,8 @@ ViewMap.prototype.showMap = function(div_id, update_callback, network_callback){
     editBox.value = text;
     editBox.style.display = "block";
 
-    const rect = container.getBoundingClientRect();
-    editBox.style.left = rect.left + pos.x - 70 + "px";
-    editBox.style.top  = rect.top  + pos.y - 12 + "px";
+    editBox.style.left = pos.x - 70 + "px";
+    editBox.style.top  = pos.y - 12 + "px";
 
     editBox.focus();
     editBox.onblur = finish;
@@ -248,9 +247,8 @@ ViewMap.prototype.showMap = function(div_id, update_callback, network_callback){
       presetBox.appendChild(d);
     });
 
-    const rect = container.getBoundingClientRect();
-    presetBox.style.left = rect.left + pos.x + "px";
-    presetBox.style.top  = rect.top  + pos.y + "px";
+    presetBox.style.left = pos.x + "px";
+    presetBox.style.top  = pos.y + "px";
     presetBox.style.display = "block";
   }
 };
